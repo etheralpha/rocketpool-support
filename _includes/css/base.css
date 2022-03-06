@@ -1,0 +1,95 @@
+:root {
+  --rp-orange: #f97516;
+  --rp-orange-dark: #ed6900;
+  --rp-orange-light: #FFDEC6;
+  /*--gray-medium:  #d3dbe3;*/
+  --gray-medium:  #e2e7ed;
+}
+
+
+/* Links */
+a:hover {
+  color: var(--rp-orange-dark);
+}
+
+
+/* Buttons */
+.btn-primary {
+  background-color: var(--rp-orange);
+  border-color: var(--rp-orange);
+}
+.btn-primary:hover,
+.btn-primary:focus {
+  background-color: var(--rp-orange-dark);
+  border-color: var(--rp-orange-dark);
+}
+
+.btn-outline-primary {
+  background-color: #fff;
+  border-color: var(--rp-orange-dark) !important;
+  color: var(--rp-orange-dark);
+}
+.btn-outline-primary:hover,
+.btn-outline-primary:focus {
+  border-color: var(--rp-orange-dark) !important;
+  background-color: var(--rp-orange-dark);
+  color: #fff;
+}
+
+.btn-secondary {
+  background-color: var(--bs-light) !important;
+  border-color: var(--bs-light) !important;
+  color: #000;
+}
+.btn-secondary:hover,
+.btn-secondary:focus {
+  border-color: var(--gray-medium) !important;
+  background-color: var(--gray-medium) !important;
+  color: #000;
+}
+
+.alert-rp,
+.alert-rp a {
+  background-color: #fff2e8;
+  color: #d37428;
+}
+
+
+/* Colors Helpers */
+.rp-orange {
+  color: var(--rp-orange);
+}
+.bg-rp-orange {
+  background-color: var(--rp-orange);
+}
+.rp-orange-dark {
+  color: var(--rp-orange-dark);
+}
+.bg-rp-orange-dark {
+  background-color: var(--rp-orange-dark);
+}
+.rp-orange-light {
+  color: var(--rp-orange-light);
+}
+.bg-rp-orange-light {
+  background-color: var(--rp-orange-light);
+}
+
+
+.btn svg {
+  margin-right: 0.25rem !important;
+  margin-top: -0.2rem;
+  display: inline;
+  height: 1.4rem;
+  width: 1.4rem;
+}
+.btn-radio svg {
+  height: 0.75rem;
+  width: 0.75rem;
+  opacity: 0.5;
+}
+svg.new-tab-icon {
+  height: 0.8rem;
+  width: 0.8rem;
+}
+
