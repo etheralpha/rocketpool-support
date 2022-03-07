@@ -53,7 +53,7 @@ layout: default
                         <a data-go-to-prompt="each_option.go_to_id" 
                             class="btn btn-secondary text-start d-block mt-3"
                             onclick="goToPrompt({{prompt.id}},{{each_option.go_to_id}})">
-                          <span class="btn-radio me-2">{{site.data.icons.circle}}</span>{{each_option.option}}
+                          <span class="btn-radio me-2">{{site.data.icons.circle}}</span>{{each_option.option | markdownify}}
                         </a>
                       {%- endif -%}
                     {%- endfor -%}
