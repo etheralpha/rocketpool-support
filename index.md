@@ -79,9 +79,11 @@ layout: default
             goToLastPrompt() function in _includes/js/base.js, which is triggered by selecting 
             the Back button. -->
         {%- endcomment -%}
-        <a id="promptBack" class="btn btn-primary mt-4 d-none" onclick="goToLastPrompt()">
-          <span class="me-2">{{site.data.icons.back_arrow}}</span>Back
-        </a>
+        <div id="promptBack" class="mt-4 mx-auto d-none" style="max-width: 40rem;">
+          <a class="btn btn-primary" onclick="goToLastPrompt()">
+            <span class="me-2">{{site.data.icons.back_arrow}}</span>Back
+          </a>
+        </div>
       </div>
     </div>
   </div>
