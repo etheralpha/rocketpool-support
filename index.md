@@ -18,8 +18,8 @@ layout: default
 <section class="">
   <div class="container py-5">
     <div class="row justify-content-center" style="margin-top: -7rem;">
-      <div class="col-12 col-md-8 col-lg-6">
-        <div class="card w-100 rounded-0 border-white">
+      <div class="col-12">
+        <div class="card rounded-0 border-white mx-auto" style="max-width: 40rem;">
           <div class="card-body m-3">
             {%- comment -%}
               <!-- Assign prompts to an array of troubleshooting prompts and create a card for each. -->
