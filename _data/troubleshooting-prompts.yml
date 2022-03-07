@@ -62,7 +62,7 @@
 - id: 6
   type: answer
   title: This is answer 6
-  body: This is some miscellaneous answer text for prompt 6
+  body: This is some miscellaneous answer text for prompt 6 with some **bold**, *italic*, and [links](https://rocketpool.net)
 
 
 

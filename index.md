@@ -40,9 +40,9 @@ layout: default
                   {%- assign visibility = "" -%}
                 {%- endif -%}
                 <div id="prompt{{prompt.id}}" class="{{visibility}}">
-                  <h5 class="card-title">{{prompt.title}}</h5>
+                  <h5 class="card-title">{{prompt.title | markdownify}}</h5>
                   {%- if prompt.body -%}
-                    <p class="card-text mb-4">{{prompt.body}}</p>
+                    <p class="card-text mb-4">{{prompt.body | markdownify}}</p>
                   {%- endif -%}
                   {%- comment -%}
                     <!-- If the prompt is a question then show the list of options. -->
