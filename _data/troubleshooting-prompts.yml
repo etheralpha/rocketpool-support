@@ -28,7 +28,7 @@
 
 - id: 1
   type: question
-  title: Is this is question 1?
+  title: Is this question 1?
   options: 
     - option: Go to 2
       go_to_id: 2
@@ -36,7 +36,7 @@
       go_to_id: 3
 - id: 2
   type: question
-  title: Is this is question 2?
+  title: Is this question 2?
   body: This is some miscellaneous body text for prompt 2.
   options: 
     - option: Go to 4
@@ -45,7 +45,7 @@
       go_to_id: 5
 - id: 3
   type: question
-  title: Is this is question 3?
+  title: Is this question 3?
   options: 
     - option: Go to 4
       go_to_id: 4
@@ -53,15 +53,15 @@
       go_to_id: 6
 - id: 4
   type: answer
-  title: This is answer 4.
+  title: This is answer 4
   body: This is some miscellaneous answer text for prompt 4
 - id: 5
   type: answer
-  title: This is answer 5.
+  title: This is answer 5
   body: This is some miscellaneous answer text for prompt 5
 - id: 6
   type: answer
-  title: This is answer 6.
+  title: This is answer 6
   body: This is some miscellaneous answer text for prompt 6
 
 
