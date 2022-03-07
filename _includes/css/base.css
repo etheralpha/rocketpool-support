@@ -51,7 +51,8 @@ a:hover {
 .alert-rp,
 .alert-rp a {
   background-color: #fff2e8;
-  color: #d37428;
+  /*color: #d37428;*/
+  color: #fb903b;
 }
 
 
@@ -91,5 +92,74 @@ a:hover {
 svg.new-tab-icon {
   height: 0.8rem;
   width: 0.8rem;
+}
+
+
+.prompt-option p {
+  margin-bottom: 0;
+  display: inline;
+}
+
+
+.markdown h2 {
+  /*margin-top: 2.5rem;*/
+  /*margin-bottom: 2rem;*/
+}
+.markdown h3, .markdown h4 {
+  /*margin-top: 2rem;*/
+  /*margin-bottom: 1rem;*/
+}
+.markdown li {
+  /*margin-top: 0.5rem;*/
+  /*margin-bottom: 0.5rem;*/
+}
+.markdown details {
+  border: solid 1px #eee;
+  padding: 10px 20px;
+  border-radius: 5px;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  background-color: rgb(248,249,250);
+}
+.markdown details[open] summary {
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: solid 1px #eee;
+}
+.markdown img {
+  margin: 5px auto;
+  max-width: 100%;
+  height: auto;
+  max-height: 350px;
+  display: block;
+}
+.markdown .caption {
+  display: block;
+  text-align: center;
+  font-size: .875em;
+  padding-bottom: 1rem!important;
+}
+.markdown table {
+  width: 100% !important;
+  margin-bottom: 1rem !important;
+  color: #212529 !important;
+  vertical-align: top !important;
+  border-color: #dee2e6 !important;
+  border-collapse: collapse !important;
+}
+.markdown table>thead {
+  vertical-align: bottom;
+}
+.markdown table>:not(:last-child)>:last-child>* {
+  border-bottom-color: currentColor;
+}
+.markdown table>:not(caption)>*>* {
+  padding: 0.5rem 0.5rem;
+  background-color: var(--bs-table-bg);
+  border-bottom-width: 1px;
+  box-shadow: inset 0 0 0 9999px var(--bs-table-accent-bg);
+}
+.markdown table>tbody {
+  vertical-align: inherit;
 }
 

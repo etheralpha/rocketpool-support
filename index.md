@@ -8,7 +8,7 @@ layout: default
   <div class="container pt-3 pb-5 mt-2 mb-5 text-center text-white">
     <h1 class="display-5 fw-bold mt-5">Rocket Pool Support</h1>
     <div class="col-lg-7 mx-auto">
-      <p class="lead mb-4 mmx-2">Troubleshooting and self-help resources.</p>
+      <p class="lead mb-4">Troubleshooting and self-help resources.</p>
     </div>
   </div>
 </header>
@@ -20,7 +20,7 @@ layout: default
     <div class="row justify-content-center" style="margin-top: -7rem;">
       <div class="col-12">
         <div class="card rounded-0 border-white mx-auto" style="max-width: 40rem;">
-          <div class="card-body m-3">
+          <div class="card-body markdown m-3">
             {%- comment -%}
               <!-- Assign prompts to an array of troubleshooting prompts and create a card for each. -->
             {%- endcomment -%}
@@ -39,10 +39,46 @@ layout: default
                 {%- if prompt.id == 1 -%}
                   {%- assign visibility = "" -%}
                 {%- endif -%}
+                {%- comment -%}
+                  <!-- If a filename is specified then load that page content, else if there's body 
+                    data specified and it's a question then use that, otherwise load content from a 
+                    file named after the id.  -->
+                {%- endcomment -%}
                 <div id="prompt{{prompt.id}}" class="{{visibility}}">
                   <h5 class="card-title">{{prompt.title | markdownify}}</h5>
-                  {%- if prompt.body -%}
+                  {% assign filename_test = prompt.body | split: " " | first %}
+                  {%- if prompt.body and filename_test contains ".md" -%}
+                    {% assign page_path = "t/" | append: prompt.body %}
+                    {%- if prompt.type == "question" -%}
+                      {% assign page_path = page_path | replace: "t/", "q/" %}
+                    {% endif %}
+                    {% assign prompt_page = site.pages | where: "path", page_path | first %}
+                    {%- comment -%}
+                      <!-- Check if the content file exists. 
+                        If it doesn't and it's an answer then throw an error.  -->
+                    {%- endcomment -%}
+                    {%- if prompt_page.content -%}
+                      <p class="card-text mb-4">{{prompt_page.content | markdownify}}</p>
+                    {%- elsif prompt.type == "answer" -%}
+                      <script>alert("ERROR: Prompt {{prompt.id}}'s specified content file {{page_path}} does not exist.")</script>
+                    {% endif %}
+                  {%- elsif prompt.body and prompt.type == "question" -%}
                     <p class="card-text mb-4">{{prompt.body | markdownify}}</p>
+                  {% else %}
+                    {% assign page_path = "t/" | append: prompt.id | append: ".md" %}
+                    {%- if prompt.type == "question" -%}
+                      {% assign page_path = page_path | replace: "t/", "q/" %}
+                    {% endif %}
+                    {% assign prompt_page = site.pages | where: "path", page_path | first %}
+                    {%- comment -%}
+                      <!-- Check if the content file exists. 
+                        If it doesn't and it's an answer then throw an error.  -->
+                    {%- endcomment -%}
+                    {%- if prompt_page.content -%}
+                      <p class="card-text mb-4">{{prompt_page.content | markdownify}}</p>
+                    {%- elsif prompt.type == "answer" -%}
+                      <script>alert("ERROR: Prompt {{prompt.id}}'s has no content file specified and the default file {{page_path}} does not exist.")</script>
+                    {% endif %}
                   {%- endif -%}
                   {%- comment -%}
                     <!-- If the prompt is a question then show the list of options. -->
@@ -50,8 +86,7 @@ layout: default
                   {%- if prompt.type == "question" -%}
                     {%- for each_option in prompt.options -%}
                       {%- if each_option.option and each_option.go_to_id -%}
-                        <a data-go-to-prompt="each_option.go_to_id" 
-                            class="btn btn-secondary text-start d-block mt-3"
+                        <a class="prompt-option btn btn-secondary text-start d-block mt-3"
                             onclick="goToPrompt({{prompt.id}},{{each_option.go_to_id}})">
                           <span class="btn-radio me-2">{{site.data.icons.circle}}</span>{{each_option.option | markdownify}}
                         </a>
