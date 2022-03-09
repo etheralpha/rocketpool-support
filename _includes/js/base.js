@@ -42,3 +42,19 @@ function goToLastPrompt() {
   goToPrompt(currentId, nextId);
 }
 
+
+// Enable tooltips
+var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+  return new bootstrap.Tooltip(tooltipTriggerEl)
+})
+
+function copyText(text, id) {
+  navigator.clipboard.writeText(text).then(function() {
+    let tooltipElement = document.getElementById(id);
+    let tooltip = bootstrap.Tooltip.getInstance(tooltipElement);
+    setTimeout(() => { tooltip.hide(); }, 1000);
+  }, function(err) {
+    console.error('Async: Could not copy text: ', err);
+  });
+}

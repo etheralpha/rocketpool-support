@@ -12,10 +12,19 @@
     <!-- Header -->
     <header class="bg-rp-orange">
       <div class="container pt-3 pb-5 mt-2 mb-5 text-center text-white">
-        {%- if page.header -%}
+        {%- if page.path contains "t/" -%}
+          <h1 class="display-5 fw-bold text-capitalize mt-5">{{page.header}}
+            {%- comment -%}
+              <!-- Copy link icon button.  -->
+            {%- endcomment -%}
+            <a id="pageLink"
+              onclick="copyText('{{site.url}}{{page.url}}', this.id)"
+              data-bs-toggle="tooltip" data-bs-placement="top" title="Copied!" data-bs-trigger="click">
+              {{site.data.icons.link}}
+            </a>
+          </h1>
+        {%- else -%}
           <h1 class="display-5 fw-bold text-capitalize mt-5">{{page.header}}</h1>
-        {%- elsif page.title -%}
-          <h1 class="display-5 fw-bold text-capitalize mt-5">{{page.title}}</h1>
         {%- endif -%}
         <div class="col-lg-7 mx-auto">
           <p class="lead mb-4">

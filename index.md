@@ -44,9 +44,29 @@ layout: default
                     data specified and it's a question then use that, otherwise load content from a 
                     file named after the id.  -->
                 {%- endcomment -%}
-                <div id="prompt{{prompt.id}}" class="{{visibility}}">
-                  <h5 class="card-title">{{prompt.title | markdownify}}</h5>
+                <div id="prompt{{prompt.id}}" class="prompt {{visibility}}">
                   {% assign filename_test = prompt.body | split: " " | first %}
+                  {%- comment -%}
+                    <!-- Copy link icon button. Will show the content page specified in the body 
+                      property or default to the content page named after the prompt id, 
+                      e.g /t/{{id}}.md file.  -->
+                  {%- endcomment -%}
+                  {%- if prompt.type == "answer" -%}
+                    {%- if prompt.body and filename_test contains ".md" -%}
+                      <a id="link{{prompt.id}}" class="prompt-link" 
+                        onclick="copyText('{{site.url}}/t/{{prompt.body}}', this.id)"
+                        data-bs-toggle="tooltip" data-bs-placement="top" title="Copied!" data-bs-trigger="click">
+                        {{site.data.icons.link}}
+                      </a>
+                    {% else %}
+                      <a id="link{{prompt.id}}" class="prompt-link" 
+                        onclick="copyText('{{site.url}}/t/{{prompt.id}}', this.id)"
+                        data-bs-toggle="tooltip" data-bs-placement="top" title="Copied!" data-bs-trigger="click">
+                        {{site.data.icons.link}}
+                      </a>
+                    {%- endif -%}
+                  {%- endif -%}
+                  <h5 class="card-title">{{prompt.title | markdownify}}</h5>
                   {%- if prompt.body and filename_test contains ".md" -%}
                     {% assign page_path = "t/" | append: prompt.body %}
                     {%- if prompt.type == "question" -%}

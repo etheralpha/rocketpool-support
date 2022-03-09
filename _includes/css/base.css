@@ -101,6 +101,38 @@ svg.new-tab-icon {
 }
 
 
+
+.prompt-link {
+  position: absolute;
+  right: 1.25rem;
+  top: 1.25rem;
+  color: var(--bs-secondary);
+  opacity: 0.6;
+}
+.prompt-link svg {
+  width: 2rem;
+  height: auto;
+}
+.prompt-link:hover {
+  opacity: 0.9;
+  color: var(--bs-secondary);
+}
+.prompt .card-title {
+  max-width: calc(100% - 2rem);
+}
+#pageLink {
+  color: var(--bs-light);
+  opacity: 0.5;
+}
+#pageLink svg {
+  width: 2.25rem;
+  height: auto;
+}
+#pageLink:hover {
+  opacity: 0.9;
+}
+
+
 .markdown h2 {
   /*margin-top: 2.5rem;*/
   /*margin-bottom: 2rem;*/
