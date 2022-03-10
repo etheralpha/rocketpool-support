@@ -42,6 +42,30 @@ function goToLastPrompt() {
   goToPrompt(currentId, nextId);
 }
 
+function submitFeedback(solved, promptId, msg) {
+  let url = "https://docs.google.com/forms/d/e/1FAIpQLSe_aBVJCnwKum3lHKrs6G_UgyTu2qy1j-64yvp0X27jmBIyWA/formResponse";
+  let dataToPost = new FormData();
+
+  dataToPost.append("entry.545240132", solved);
+  dataToPost.append("entry.702699373", promptId);
+  dataToPost.append("entry.1611392308", promptHistory.join(", "));
+  dataToPost.append("entry.1264050795", msg);
+
+  fetch(url,{
+    method: "POST",
+    mode: "no-cors",
+    header:{
+      'Content-Type': 'application/json'
+    },
+    body: dataToPost
+  })
+  .then(data=>{
+    console.log(data);
+  })
+  .catch(err=>console.error(err));
+}
+
+
 
 // Enable tooltips
 var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
