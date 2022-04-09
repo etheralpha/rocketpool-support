@@ -23,59 +23,30 @@
 
 
 # Record the last number (id) used to know what number (id) to start new entries on (keep commented)
-# last_number_used: 6
-
+# last_number_used: 4
 
 - id: 1
   type: question
-  title: Is this question 1?
-  options: 
-    - option: Go to `2`
+  title: Welcome to rocketpool.support
+  body: What seems to be the problem?
+  options:
+    - option: I submitted a transaction, but it's taking too long.
       go_to_id: 2
-    - option: _Go to **3**_
-      go_to_id: 3
+
 - id: 2
   type: question
-  title: Is this question 2?
-  body: 2.md
-  options: 
-    - option: Go to 4
+  title: Is the transaction pending, or failed?
+  body: Go to etherscan.io and search for your node wallet address.\n\nIs the transaction pending, or did it fail?
+  options:
+    - option: It's pending
+      go_to_id: 3
+    - option: It failed
       go_to_id: 4
-    - option: Go to 5
-      go_to_id: 5
+
 - id: 3
-  type: question
-  title: Is this question 3?
-  body: This is some inline body text for prompt 3 with some **bold**, *italic*, `code`, and [links](https://rocketpool.net). Inline body text is only possible for questions.
-  options: 
-    - option: Go to 4
-      go_to_id: 4
-    - option: Go to 6
-      go_to_id: 6
+  type: answer
+  title: Stuck Transaction
+
 - id: 4
   type: answer
-  title: This is answer 4
-  body: This content will not show. It will pull content from the /t/4.md file.
-- id: 5
-  type: answer
-  title: This is answer 5
-  body: test-answer-5.md
-- id: 6
-  type: answer
-  title: This is answer 6
-  body: 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  title: Failed Transaction
