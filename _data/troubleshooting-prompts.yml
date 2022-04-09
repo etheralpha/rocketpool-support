@@ -23,7 +23,7 @@
 
 
 # Record the last number (id) used to know what number (id) to start new entries on (keep commented)
-# last_number_used: 4
+# last_number_used: 14
 
 - id: 1
   type: question
@@ -32,6 +32,8 @@
   options:
     - option: I submitted a transaction, but it's taking too long.
       go_to_id: 2
+    - option: My disk is completely full, and it's causing issues.
+      go_to_id: 5
 
 - id: 2
   type: question
@@ -50,3 +52,81 @@
 - id: 4
   type: answer
   title: Failed Transaction
+
+- id: 5
+  type: question
+  title: Full Disk
+  body: Is your node using a second drive to store the chain data?
+  options:
+    - option: I am using a second drive.
+      go_to_id: 6
+    - option: I am storing the chain data on the same drive as the operating system.
+      go_to_id: 9
+
+- id: 6
+  type: question
+  title: Second Drive Remaining Space
+  body: 6.md
+  options:
+    - option: I do
+      go_to_id: 7
+    - option: I do not
+      go_to_id: 8
+
+- id: 7
+  type: answer
+  title: Prune Geth
+
+- id: 8
+  type: answer
+  title: Resync Geth
+
+- id: 9
+  type: question
+  title: Root Partition Size
+  body: 9.md
+  options:
+    - option: Yes, the partition is using my whole SSD.
+      go_to_id: 10
+    - option: No, the partition is smaller than my SSD capacity.
+      go_to_id: 11
+
+- id: 10
+  type: question
+  title: Root Partition Remaining Space
+  body: Run `df -h /`. Do you have at least 50G free?
+  options:
+    - option: Yes, I have at least 50G free.
+      go_to_id: 7
+    - option: No, I have less than 50G free.
+      go_to_id: 8
+
+- id: 11
+  type: question
+  title: LVM
+  body: 11.md
+  options:
+    - option: Yes, this happened to me.
+      go_to_id: 12
+    - option: No, something else is wrong.
+      go_to_id: 13
+
+- id: 12
+  type: question
+  title: Grow LVM Volume
+  body: 12.md
+  options:
+    - option: I got an error
+      go_to_id: 13
+    - option: No, the disk is still full.
+      go_to_id: 13
+    - option: Yes, it does.
+      go_to_id: 14
+
+- id: 13
+  type: answer
+  title: Find us on Discord
+
+- id: 14
+  type: answer
+  title: Done!
