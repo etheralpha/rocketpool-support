@@ -5,7 +5,7 @@ layout: default
 
 <!-- Header -->
 <header class="bg-rp-orange">
-  <div class="container pt-3 pb-5 mt-2 mb-5 text-center text-white">
+  <div class="container pt-5 pb-5 mt-2 mb-5 text-center text-white">
     <h1 class="display-5 fw-bold mt-5">Rocket Pool Support</h1>
     <div class="col-lg-7 mx-auto">
       <p class="lead mb-4">Troubleshooting and self-help resources.</p>
