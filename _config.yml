@@ -20,8 +20,12 @@ notification_id: 1 # Increment value when new notification to show again
 notification_msg: This is a test notification message.<br>This is a test notification message.
 
 # Navigation
-nav_enabled: false
+nav_enabled: true
 
 # Links
 github_repo: https://github.com/etheralpha/rocketpool-support
 
+# Categories - Used to build the directory sections; only posts with these categories will be listed.
+directory_categories:
+  - transactions
+  - disk
