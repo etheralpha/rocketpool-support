@@ -36,6 +36,7 @@
 
 
 /* Links */
+a,
 a:hover {
   color: var(--rp-orange-dark);
 }
@@ -103,6 +104,13 @@ a:hover {
 .btn:focus {
   box-shadow: var(--rp-orange-shadow) !important;
 }
+.btn.disabled,
+.btn:disabled {
+  color: var(--bs-secondary) !important;
+  border-color: var(--bs-secondary) !important;
+  background-color: var(--gray-medium) !important;
+  opacity: 0.4 !important;
+}
 
 
 .form-check-input:checked {
@@ -111,8 +119,14 @@ a:hover {
 }
 .form-check-input:focus {
   border-color: var(--rp-orange-dark);
-  outline: 0;
   box-shadow: var(--rp-orange-shadow);
+  outline: 0;
+}
+
+.form-control:focus {
+  border-color: var(--rp-orange);
+  box-shadow: var(--rp-orange-shadow);
+  outline: 0;
 }
 
 

@@ -123,27 +123,34 @@ layout: default
             {%- endcomment -%}
             <div id="promptExtra" class="d-none">
               <div id="promptFeedback" class="border-top border-seondary py-2 mt-3 mb-0">
-                <h5 class="my-3">Did this solve your issue?</h5>
-                <div class="form-check">
-                  <input class="form-check-input" type="radio" name="feedbackSolved" value="yes" id="feedbackSolved1" checked>
-                  <label class="form-check-label" for="feedbackSolved1">
-                    Yes, this solved my issue
-                  </label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="radio" name="feedbackSolved" value="no" id="feedbackSolved2">
-                  <label class="form-check-label" for="feedbackSolved2">
-                    No, this did not solve my issue
-                  </label>
-                </div>
+                <h5 class="my-3">Submit Feedback</h5>
+                <!-- Feedback radio options -->
+                <form id="feedbackRadios" name="feedbackRadios">
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="feedbackRadio" value="yes" id="feedbackRadio1" checked>
+                    <label class="form-check-label" for="feedbackRadio1">
+                      This solved my issue
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="feedbackRadio" value="no" id="feedbackRadio2">
+                    <label class="form-check-label" for="feedbackRadio2">
+                      This did not solve my issue
+                    </label>
+                  </div>
+                </form>
+                <!-- Feedback comments -->
                 <textarea class="form-control mt-3" placeholder="Leave a comment here" id="feedbackComment"></textarea>
+                <!-- Feedback submit button -->
                 <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-3">
-                  <button class="btn btn-outline-primary" type="button" onclick="submitFeedback()">Submit</button>
+                  <button id="feedbackButton" class="btn btn-outline-primary" type="button" onclick="submitFeedback()" disabled>Submit</button>
                 </div>
               </div>
+              <!-- Feedback submitted message -->
               <div id="promptFeedbackSubmitted" class="d-none border-top border-seondary py-3 mt-3 mb-0">
                 <div>Thanks for your feedback!</div>
               </div>
+              <!-- Discord invite -->
               <div id="promptDiscordInvite" class="alert alert-rp d-flex align-items-center mb-0 mt-3" role="alert">
                 <span class="me-3">{{site.data.icons.discord | replace: "1rem", "1.5rem"}}</span>
                 <div>
