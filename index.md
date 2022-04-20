@@ -66,7 +66,7 @@ layout: default
                       </a>
                     {%- endif -%}
                   {%- endif -%}
-                  <h5 class="card-title">{{prompt.title | markdownify}}</h5>
+                  <h4 class="card-title">{{prompt.title | markdownify}}</h4>
                   {%- if prompt.body and filename_test contains ".md" -%}
                     {% assign page_path = "t/" | append: prompt.body %}
                     {%- if prompt.type == "question" -%}
@@ -78,12 +78,12 @@ layout: default
                         If it doesn't and it's an answer then throw an error.  -->
                     {%- endcomment -%}
                     {%- if prompt_page.content -%}
-                      <p class="card-text mb-4">{{prompt_page.content | markdownify}}</p>
+                      <div class="card-text mb-4">{{prompt_page.content | markdownify}}</div>
                     {%- elsif prompt.type == "answer" -%}
                       <script>alert("ERROR: Prompt {{prompt.id}}'s specified content file {{page_path}} does not exist.")</script>
                     {% endif %}
                   {%- elsif prompt.body and prompt.type == "question" -%}
-                    <p class="card-text mb-4">{{prompt.body | markdownify}}</p>
+                    <div class="card-text mb-4">{{prompt.body | markdownify}}</div>
                   {% else %}
                     {% assign page_path = "t/" | append: prompt.id | append: ".md" %}
                     {%- if prompt.type == "question" -%}
@@ -95,7 +95,7 @@ layout: default
                         If it doesn't and it's an answer then throw an error.  -->
                     {%- endcomment -%}
                     {%- if prompt_page.content -%}
-                      <p class="card-text mb-4">{{prompt_page.content | markdownify}}</p>
+                      <div class="card-text mb-4">{{prompt_page.content | markdownify}}</div>
                     {%- elsif prompt.type == "answer" -%}
                       <script>alert("ERROR: Prompt {{prompt.id}}'s has no content file specified and the default file {{page_path}} does not exist.")</script>
                     {% endif %}
@@ -121,10 +121,41 @@ layout: default
                 functionality is controlled by the goToPrompt() function in _includes/js/base.js, 
                 which is triggered by selecting an option. -->
             {%- endcomment -%}
-            <div id="promptDiscordInvite" class="d-none alert alert-rp d-flex align-items-center mb-0 mt-3" role="alert">
-              <span class="me-3">{{site.data.icons.discord | replace: "1rem", "1.5rem"}}</span>
-              <div>
-                Still stuck? Get help in the <a href="https://discord.gg/rocketpool" target="_blank">Rocket Pool Discord</a>!
+            <div id="promptExtra" class="d-none">
+              <div id="promptFeedback" class="border-top border-seondary py-2 mt-3 mb-0">
+                <h5 class="my-3">Submit Feedback</h5>
+                <!-- Feedback radio options -->
+                <form id="feedbackRadios" name="feedbackRadios">
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="feedbackRadio" value="yes" id="feedbackRadio1" checked>
+                    <label class="form-check-label" for="feedbackRadio1">
+                      This solved my issue
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="feedbackRadio" value="no" id="feedbackRadio2">
+                    <label class="form-check-label" for="feedbackRadio2">
+                      This did not solve my issue
+                    </label>
+                  </div>
+                </form>
+                <!-- Feedback comments -->
+                <textarea class="form-control mt-3" placeholder="Leave a comment here" id="feedbackComment"></textarea>
+                <!-- Feedback submit button -->
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-3">
+                  <button id="feedbackButton" class="btn btn-outline-primary" type="button" onclick="submitFeedback()" disabled>Submit</button>
+                </div>
+              </div>
+              <!-- Feedback submitted message -->
+              <div id="promptFeedbackSubmitted" class="d-none border-top border-seondary py-3 mt-3 mb-0">
+                <div>Thanks for your feedback!</div>
+              </div>
+              <!-- Discord invite -->
+              <div id="promptDiscordInvite" class="alert alert-rp d-flex align-items-center mb-0 mt-3" role="alert">
+                <span class="me-3">{{site.data.icons.discord | replace: "1rem", "1.5rem"}}</span>
+                <div>
+                  Still stuck? Get help in the <a href="https://discord.gg/rocketpool" target="_blank">Rocket Pool Discord</a>!
+                </div>
               </div>
             </div>
           </div>
