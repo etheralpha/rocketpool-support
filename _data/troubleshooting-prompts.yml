@@ -27,7 +27,7 @@
 
 - id: 1
   type: question
-  title: Welcome to rocketpool.support
+  title: Welcome to rocketpool.support!
   body: What seems to be the problem?
   options:
     - option: I submitted a transaction, but it's taking too long.

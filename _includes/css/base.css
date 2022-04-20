@@ -2,6 +2,7 @@
   --rp-orange: #f97516;
   --rp-orange-dark: #ed6900;
   --rp-orange-light: #FFDEC6;
+  --rp-orange-shadow: 0 0 0 0.25rem #fff2e8;
   /*--gray-medium:  #d3dbe3;*/
   --gray-medium:  #e2e7ed;
 }
@@ -46,17 +47,19 @@ a:hover {
   border-color: var(--rp-orange);
 }
 .btn-primary:hover,
+.btn-primary:active,
 .btn-primary:focus {
   background-color: var(--rp-orange-dark);
   border-color: var(--rp-orange-dark);
 }
 
 .btn-outline-primary {
-  background-color: #fff;
+  background-color: transparent;
   border-color: var(--rp-orange-dark) !important;
   color: var(--rp-orange-dark);
 }
 .btn-outline-primary:hover,
+.btn-outline-primary:active,
 .btn-outline-primary:focus {
   border-color: var(--rp-orange-dark) !important;
   background-color: var(--rp-orange-dark);
@@ -64,16 +67,54 @@ a:hover {
 }
 
 .btn-secondary {
-  background-color: var(--bs-light) !important;
   border-color: var(--bs-light) !important;
+  background-color: var(--bs-light) !important;
+  /*background-color: var(--gray-medium) !important;*/
   color: #000;
 }
 .btn-secondary:hover,
+.btn-secondary:active,
 .btn-secondary:focus {
+  border-color: var(--gray-medium) !important;
+  background-color: var(--gray-medium) !important;
+  /*background-color: #cdd3d9 !important;*/
+  color: #000;
+}
+
+.btn-outline-secondary {
+  background-color: transparent;
+  border-color: var(--gray-medium) !important;
+  color: #000;
+}
+.btn-outline-secondary:hover,
+.btn-outline-secondary:active,
+.btn-outline-secondary:focus {
   border-color: var(--gray-medium) !important;
   background-color: var(--gray-medium) !important;
   color: #000;
 }
+
+.btn-check:active+.btn:focus,
+.btn-check:checked+.btn:focus,
+.btn.active:focus,
+.btn.dropdown-toggle.show:focus,
+.btn:active:focus,
+.btn-check:focus+.btn,
+.btn:focus {
+  box-shadow: var(--rp-orange-shadow) !important;
+}
+
+
+.form-check-input:checked {
+  background-color: var(--rp-orange);
+  border-color: var(--rp-orange);
+}
+.form-check-input:focus {
+  border-color: var(--rp-orange-dark);
+  outline: 0;
+  box-shadow: var(--rp-orange-shadow);
+}
+
 
 .alert-rp,
 .alert-rp a {

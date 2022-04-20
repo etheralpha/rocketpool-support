@@ -1,0 +1,24 @@
+{
+  "name": "rocketpool-support",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "This is the source code for <https://rocketpool.support>, a Rocket Pool troubleshooting self-help resource.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/etheralpha/rocketpool-support.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/etheralpha/rocketpool-support/issues"
+  },
+  "homepage": "https://github.com/etheralpha/rocketpool-supporte#readme",
+  "dependencies": {
+    "netlify": "^11.0.0",
+    "node-fetch": "~1.0.2"
+  }
+}

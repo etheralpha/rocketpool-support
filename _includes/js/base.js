@@ -5,7 +5,7 @@ function goToPrompt(currentId, nextId) {
   const currentPrompt = document.getElementById("prompt" + currentId);
   const nextPrompt = document.getElementById("prompt" + nextId);
   const backButton = document.getElementById("promptBack");
-  const discordInvite = document.getElementById("promptDiscordInvite");
+  const promptExtra = document.getElementById("promptExtra");
   // show the back button unless it's the starting prompt
   if (nextId == 1) {
     backButton.classList.add("d-none");
@@ -15,11 +15,11 @@ function goToPrompt(currentId, nextId) {
   // hide the current prompt and show the next one
   currentPrompt.classList.add("d-none");
   nextPrompt.classList.remove("d-none");
-  // only show the discord invite on answer prompts
+  // only show the feedback and discord invite on answer prompts
   if (answerIds.includes(nextId)) {
-    discordInvite.classList.remove("d-none");
+    promptExtra.classList.remove("d-none");
   } else {
-    discordInvite.classList.add("d-none");
+    promptExtra.classList.add("d-none");
   }
   // update promptHistory unless going back
   if (promptHistory[promptHistory.length - 1] !== nextId) {
@@ -40,6 +40,27 @@ function goToLastPrompt() {
   promptHistory.pop();
   // go to the last prompt
   goToPrompt(currentId, nextId);
+}
+
+
+function submitFeedback() {
+  let isSolved = document.querySelector('input[name="feedbackSolved"]:checked').value;
+  let promptId = promptHistory[promptHistory.length - 1];
+  let comment = document.getElementById("feedbackComment").value;
+  sendFeedback(isSolved, promptId, comment);
+
+  document.getElementById("promptFeedback").classList.add("d-none");
+  document.getElementById("promptFeedbackSubmitted").classList.remove("d-none");
+}
+
+function sendFeedback(isSolved, promptId, comment) {
+  let solved = `isSolved=${ encodeURIComponent(isSolved) }`;
+  let id = `&promptId=${ encodeURIComponent(promptId) }`;
+  let history = `&promptHistory=${ encodeURIComponent(promptHistory.join(", ")) }`;
+  let msg = `&comment=${ encodeURIComponent(comment) }`;
+  let parameters = solved + id + history + msg;
+  let url = "/.netlify/functions/feedback/?" + parameters;
+  fetch(url);
 }
 
 

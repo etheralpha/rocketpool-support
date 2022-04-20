@@ -6,7 +6,7 @@ url: https://rocketpool.support
 permalink: pretty # Do not change this, it will break all links
 timezone: America/New_York
 markdown: kramdown
-port: 4400
+# port: 4400
 livereload: true
 
 
