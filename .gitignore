@@ -9,3 +9,5 @@ vendor
 **/.DS_Store
 # Local Netlify folder
 .netlify
+*.swp
+.bundle
