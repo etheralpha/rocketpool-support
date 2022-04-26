@@ -23,7 +23,7 @@
 
 
 # Record the last number (id) used to know what number (id) to start new entries on (keep commented)
-# last_number_used: 14
+# last_number_used: 24
 
 - id: 1
   type: question
@@ -34,6 +34,10 @@
       go_to_id: 2
     - option: My disk is completely full, and it's causing issues.
       go_to_id: 5
+    - option: I'm missing attestations
+      go_to_id: 15
+    - option: I'm getting errors running the CLI commands.
+      go_to_id: 23
 
 - id: 2
   type: question
@@ -130,3 +134,79 @@
 - id: 14
   type: answer
   title: Done!
+
+- id: 15
+  type: question
+  title: How many attestations are you missing?
+  body: Are you missing all your attestations, or just some?
+  options:
+    - option: All
+      go_to_id: 16
+    - option: Some
+      go_to_id: 19
+
+- id: 16
+  type: question
+  title: Is it due to Doppelgänger Protection?
+  body: Did you recently restart your validator?
+  options:
+    - option: "Yes"
+      go_to_id: 17
+    - option: "No"
+      go_to_id: 18
+
+- id: 17
+  type: answer
+  title: Doppelgänger Detection
+
+- id: 18
+  type: question
+  title: Is your drive full?
+  body: Run `df -h /`. Is the volume where you store your chain data (`/` by default) completely full?
+  options:
+    - option: "Yes"
+      go_to_id: 5
+    - option: "No"
+      go_to_id: 13
+
+- id: 19
+  type: question
+  title: Peer Count
+  body: Does your Grafana dashboard show a low or erratic peer count?
+  options:
+    - option: "Yes"
+      go_to_id: 20
+    - option: "No"
+      go_to_id: 21
+
+- id: 20
+  type: answer
+  title: Port Forwarding
+
+- id: 21
+  type: question
+  title: Is NTP working?
+  body: "Run `timedatctl status`. Does it show `NTP service: active`?"
+  options:
+    - option: "Yes"
+      go_to_id: 18
+    - option: "No"
+      go_to_id: 22
+
+- id: 22
+  type: answer
+  title: Install Chrony
+
+- id: 23
+  type: question
+  title: Did snap install docker?
+  body: Run `snap list`. Does it print a line containing \"Docker\"?
+  options:
+    - option: "Yes"
+      go_to_id: 24
+    - option: "No"
+      go_to_id: 18
+
+- id: 24
+  type: answer
+  title: Snapd Remediation
