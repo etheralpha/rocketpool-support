@@ -11,9 +11,23 @@
 
     <!-- Header -->
     <header class="bg-rp-orange">
-      <div class="container pt-3 pb-5 mt-2 mb-5 text-center text-white">
+      <div class="container pt-5 pb-5 mt-2 mb-5 text-center text-white">
         {%- if page.path contains "t/" -%}
           <h1 class="display-5 fw-bold text-capitalize mt-5">{{page.header}}
+            {%- comment -%}
+              <!-- Copy link icon button.  -->
+            {%- endcomment -%}
+            <a id="pageLink"
+              onclick="copyText('{{site.url}}{{page.url}}', this.id)"
+              data-bs-toggle="tooltip" data-bs-placement="top" title="Copied!" data-bs-trigger="click">
+              {{site.data.icons.link}}
+            </a>
+          </h1>
+        {% elsif page.path contains "q/" %}
+          {%- assign prompt_id = page.name | split: ".md" | first -%}
+          {%- assign this_prompt = site.data.troubleshooting-prompts | where: "id", prompt_id | first -%}
+          {%- assign header = this_prompt.title -%}
+          <h1 class="display-5 fw-bold text-capitalize mt-5">{{header}}
             {%- comment -%}
               <!-- Copy link icon button.  -->
             {%- endcomment -%}

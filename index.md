@@ -65,6 +65,15 @@ layout: default
                         {{site.data.icons.link}}
                       </a>
                     {%- endif -%}
+                  {% elsif prompt.type == "question" %}
+                    {%- if prompt.body and filename_test contains ".md" -%}
+                      {% assign path = prompt.body | split: ".md" | first %}
+                      <a id="link{{prompt.id}}" class="prompt-link" 
+                        onclick="copyText('{{site.url}}/q/{{path}}', this.id)"
+                        data-bs-toggle="tooltip" data-bs-placement="top" title="Copied!" data-bs-trigger="click">
+                        {{site.data.icons.link}}
+                      </a>
+                    {% endif %}
                   {%- endif -%}
                   <h4 class="card-title">{{prompt.title | markdownify}}</h4>
                   {%- if prompt.body and filename_test contains ".md" -%}
