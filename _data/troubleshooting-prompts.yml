@@ -38,6 +38,8 @@
       go_to_id: 15
     - option: I'm getting errors running the CLI commands.
       go_to_id: 23
+    - option: The Grafana dashboard isn't showing all my data.
+      go_to_id: 25
 
 - id: 2
   type: question
@@ -210,4 +212,76 @@
 - id: 24
   type: answer
   title: Snapd Remediation
+
+- id: 25
+  type: question
+  title: How much data is missing?
+  body: Make sure the smartnode is running with `rocketpool service status`. Is all your data missing, or only some?
+  options:
+    - option: All
+      go_to_id: 26
+    - option: Some
+      go_to_id: 29
+
+- id: 26
+  type: question
+  title: Did snap install docker?
+  body: Run `snap list`. Does it print a line containing \"Docker\"?
+  options:
+    - option: "Yes"
+      go_to_id: 24
+    - option: "No"
+      go_to_id: 27
+
+- id: 27
+  type: question
+  title: Is the Prometheus Data Source correctly set?
+  body: In Grafana, navigate to Configuration->Data Sources. Is the Prometheus Data Source set to \"default\"?
+  options:
+    - option: "Yes"
+      go_to_id: 13
+    - option: "No"
+      go_to_id: 28
+
+- id: 28
+  type: answer
+  title: Reset Prometheus Data Source
+
+- id: 29
+  type: question
+  title: Is UFW allowing Prometheus access to Node-Exporter?
+  body: 29.md
+  options:
+    - option: "Yes"
+      go_to_id: 31
+    - option: "No"
+      go_to_id: 30
+
+- id: 30
+  type: answer
+  title: Follow the guides to update your UFW settings.
+
+- id: 31
+  type: question
+  title: Is Node-Exporter running?
+  body: 31.md
+  options:
+    - option: "Yes"
+      go_to_id: 32
+    - option: "No"
+      go_to_id: 33
+
+- id: 32
+  type: question
+  title: Is rocketpool_node running?
+  body: 32.md
+  options:
+    - option: "Yes"
+      go_to_id: 13
+    - option: "No"
+      go_to_id: 33
+
+- id: 33
+  type: answer
+  title: Start the service.
 
