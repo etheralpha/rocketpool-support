@@ -25,12 +25,25 @@ layout: default
             {%- for category in categories -%}
               <h3 class="category text-capitalize mt-4">{{category}}</h3>
               {%- for page in site.pages -%}
-                <ul>
-                  {%- if page.category == category -%}
+                {%- if page.dir contains "/t/" and page.category == category -%}
+                  <ul>
                     <li><a href="{{page.url}}" class="link-secondary">{{page.header}}</a></li>
-                  {%- endif -%}
-                </ul>
+                  </ul>
+                {%- endif -%}
               {%- endfor -%}
+            {%- endfor -%}
+            <h3 class="category text-capitalize mt-4">Uncategorized</h3>
+            {%- assign omit_pages = "t/13.md, t/14.md" | split: ", " -%}
+            {%- for page in site.pages -%}
+              {%- if page.dir contains "/t/" -%}
+                {%- if page.category == null -%}
+                  {%- unless omit_pages contains page.path -%}
+                    <ul>
+                      <li><a href="{{page.url}}" class="link-secondary">{{page.header}}</a></li>
+                    </ul>
+                  {%- endunless -%}
+                {%- endif -%}
+              {%- endif -%} 
             {%- endfor -%}
           </div>
         </div>
