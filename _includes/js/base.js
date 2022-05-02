@@ -2,8 +2,27 @@ let promptHistory = [1];
 let answerIds = {{ site.data.troubleshooting-prompts | where: "type", "answer" | map: "id" | jsonify }};
 let autoSolvedIds = [];
 let autoUnsolvedIds = [13];
+window.onload = load();
+
+
+function load() {
+  // If params detected, go to prompt
+  let params = getQueryParameters();
+  console.log({"params": params});
+  if ("id" in params) {
+    const currentId = promptHistory[promptHistory.length - 1];
+    const nextId = params.id;
+    // showprompt(params.id)
+    goToPrompt(currentId, nextId);
+  } else {
+    updateUrl();
+  }
+}
+
 
 function goToPrompt(currentId, nextId) {
+  console.log({"currentId": currentId});
+  console.log({"nextId": nextId});
   const currentPrompt = document.getElementById("prompt" + currentId);
   const nextPrompt = document.getElementById("prompt" + nextId);
   const backButton = document.getElementById("promptBack");
@@ -38,6 +57,8 @@ function goToPrompt(currentId, nextId) {
   if (promptHistory[promptHistory.length - 1] !== nextId) {
     promptHistory.push(nextId);
   }
+  let params = "?id=" + nextId;
+  updateUrl(params);
 }
 
 function goToLastPrompt() {
@@ -124,3 +145,26 @@ function copyText(text, id) {
     console.error('Async: Could not copy text: ', err);
   });
 }
+
+
+
+
+// Update the url parameters (does not trigger page refresh)
+function updateUrl(params = false) {
+  params = params ? params : "";
+  let url = window.location.href.split("?")[0] + params;
+  window.history.replaceState(null, "", url);
+}
+// Gets the url parameters
+function getQueryParameters() {
+  try {
+    let queryString = location.search.slice(1), params = {};
+    queryString.replace(/([^=]*)=([^&]*)&*/g, (_, key, value) => {
+      params[key] = value;
+    });
+    return params;
+  } catch {
+    return null;
+  }
+}
+
