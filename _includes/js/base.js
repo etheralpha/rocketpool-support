@@ -147,8 +147,6 @@ function copyText(text, id) {
 }
 
 
-
-
 // Update the url parameters (does not trigger page refresh)
 function updateUrl(params = false) {
   params = params ? params : "";

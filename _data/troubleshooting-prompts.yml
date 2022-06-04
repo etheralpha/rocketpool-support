@@ -1,5 +1,6 @@
 # - id:             # permanent, unique number that will be used to reference this entry
 #   type:           # (question/answer) question = an entry with choices to progress; answer = an entry that's a dead end with no choices for progression an only has a solution;
+#   category:       # the category (from directory_categories in _config.yml) the prompt should be listed under in the directory
 #   title:          # the question or the answer header
 #   body:           # question details or an answer's solution
 #   options:        # a list of options for the user to get directed to the next prompt
@@ -13,6 +14,7 @@
 # Template to copy for new entries
 # - id: 
 #   type: 
+#   category: 
 #   title: 
 #   body: 
 #   options: 
@@ -27,6 +29,7 @@
 
 - id: 1
   type: question
+  category: 
   title: Welcome to rocketpool.support!
   body: What seems to be the problem?
   options:
@@ -43,6 +46,7 @@
 
 - id: 2
   type: question
+  category: 
   title: Is the transaction pending, or failed?
   body: Go to etherscan.io and search for your node wallet address.\n\nIs the transaction pending, or did it fail?
   options:
@@ -53,14 +57,17 @@
 
 - id: 3
   type: answer
+  category: transactions
   title: Stuck Transaction
 
 - id: 4
   type: answer
+  category: transactions
   title: Failed Transaction
 
 - id: 5
   type: question
+  category: 
   title: Full Disk
   body: Is your node using a second drive to store the chain data?
   options:
@@ -71,6 +78,7 @@
 
 - id: 6
   type: question
+  category: 
   title: Second Drive Remaining Space
   body: 6.md
   options:
@@ -81,14 +89,17 @@
 
 - id: 7
   type: answer
+  category: disk
   title: Prune Geth
 
 - id: 8
   type: answer
+  category: disk
   title: Resync Geth
 
 - id: 9
   type: question
+  category: 
   title: Root Partition Size
   body: 9.md
   options:
@@ -99,6 +110,7 @@
 
 - id: 10
   type: question
+  category: 
   title: Root Partition Remaining Space
   body: Run `df -h /`. Do you have at least 50G free?
   options:
@@ -109,6 +121,7 @@
 
 - id: 11
   type: question
+  category: 
   title: LVM
   body: 11.md
   options:
@@ -119,6 +132,7 @@
 
 - id: 12
   type: question
+  category: 
   title: Grow LVM Volume
   body: 12.md
   options:
@@ -131,14 +145,17 @@
 
 - id: 13
   type: answer
+  category: 
   title: Find us on Discord
 
 - id: 14
   type: answer
+  category: 
   title: Done!
 
 - id: 15
   type: question
+  category: 
   title: How many attestations are you missing?
   body: Are you missing all your attestations, or just some?
   options:
@@ -149,6 +166,7 @@
 
 - id: 16
   type: question
+  category: 
   title: Is it due to Doppelgänger Protection?
   body: Did you recently restart your validator?
   options:
@@ -159,10 +177,12 @@
 
 - id: 17
   type: answer
+  category: 
   title: Doppelgänger Detection
 
 - id: 18
   type: question
+  category: 
   title: Is your drive full?
   body: Run `df -h /`. Is the volume where you store your chain data (`/` by default) completely full?
   options:
@@ -173,6 +193,7 @@
 
 - id: 19
   type: question
+  category: 
   title: Peer Count
   body: Does your Grafana dashboard show a low or erratic peer count?
   options:
@@ -183,10 +204,12 @@
 
 - id: 20
   type: answer
+  category: 
   title: Port Forwarding
 
 - id: 21
   type: question
+  category: 
   title: Is NTP working?
   body: "Run `timedatctl status`. Does it show `NTP service: active`?"
   options:
@@ -197,10 +220,12 @@
 
 - id: 22
   type: answer
+  category: 
   title: Install Chrony
 
 - id: 23
   type: question
+  category: 
   title: Did snap install docker?
   body: Run `snap list`. Does it print a line containing \"Docker\"?
   options:
@@ -211,10 +236,12 @@
 
 - id: 24
   type: answer
+  category: 
   title: Snapd Remediation
 
 - id: 25
   type: question
+  category: 
   title: How much data is missing?
   body: Make sure the smartnode is running with `rocketpool service status`. Is all your data missing, or only some?
   options:
@@ -225,6 +252,7 @@
 
 - id: 26
   type: question
+  category: 
   title: Did snap install docker?
   body: Run `snap list`. Does it print a line containing \"Docker\"?
   options:
@@ -235,6 +263,7 @@
 
 - id: 27
   type: question
+  category: 
   title: Is the Prometheus Data Source correctly set?
   body: In Grafana, navigate to Configuration->Data Sources. Is the Prometheus Data Source set to \"default\"?
   options:
@@ -245,10 +274,12 @@
 
 - id: 28
   type: answer
+  category: 
   title: Reset Prometheus Data Source
 
 - id: 29
   type: question
+  category: 
   title: Is UFW allowing Prometheus access to Node-Exporter?
   body: 29.md
   options:
@@ -259,10 +290,12 @@
 
 - id: 30
   type: answer
+  category: 
   title: Follow the guides to update your UFW settings.
 
 - id: 31
   type: question
+  category: 
   title: Is Node-Exporter running?
   body: 31.md
   options:
@@ -273,6 +306,7 @@
 
 - id: 32
   type: question
+  category: 
   title: Is rocketpool_node running?
   body: 32.md
   options:
@@ -283,5 +317,6 @@
 
 - id: 33
   type: answer
+  category: 
   title: Start the service.
 

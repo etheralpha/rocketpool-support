@@ -22,28 +22,56 @@ layout: default
         <div class="card rounded-0 border-white mx-auto" style="max-width: 40rem;">
           <div class="card-body markdown m-3">
             {%- assign categories = site.directory_categories | sort_natural -%}
+            {%- assign prompts = site.data.troubleshooting-prompts -%}
+            {%- assign omit_prompts = "13, 14" | split: ", " -%}
             {%- for category in categories -%}
               <h3 class="category text-capitalize mt-4">{{category}}</h3>
-              {%- for page in site.pages -%}
-                {%- if page.dir contains "/t/" and page.category == category -%}
+              {%- for prompt in prompts -%}
+                {%- unless omit_prompts contains prompt_id -%}
+                {%- if prompt.category == category and prompt.type == "question" -%}
                   <ul>
-                    <li><a href="{{page.url}}" class="link-secondary">{{page.header}}</a></li>
+                    <li>
+                      <a href="/?id={{prompt.id}}" class="link-secondary">
+                        [Troubleshoot] {{prompt.title}}
+                      </a>
+                    </li>
                   </ul>
                 {%- endif -%}
+                {%- if prompt.category == category and prompt.type == "answer" -%}
+                  <ul>
+                    <li>
+                      <a href="/?id={{prompt.id}}" class="link-secondary">
+                        [Solution] {{prompt.title}}
+                      </a>
+                    </li>
+                  </ul>
+                {%- endif -%}
+              {%- endunless -%}
               {%- endfor -%}
             {%- endfor -%}
             <h3 class="category text-capitalize mt-4">Uncategorized</h3>
-            {%- assign omit_pages = "t/13.md, t/14.md" | split: ", " -%}
-            {%- for page in site.pages -%}
-              {%- if page.dir contains "/t/" -%}
-                {%- if page.category == null -%}
-                  {%- unless omit_pages contains page.path -%}
-                    <ul>
-                      <li><a href="{{page.url}}" class="link-secondary">{{page.header}}</a></li>
-                    </ul>
-                  {%- endunless -%}
+            {%- for prompt in prompts -%}
+              {%- assign prompt_id = prompt.id | append: "" -%}
+              {%- unless omit_prompts contains prompt_id -%}
+                {%- if prompt.category == null and prompt.type == "question" -%}
+                  <ul>
+                    <li>
+                      <a href="/?id={{prompt.id}}" class="link-secondary">
+                        [Troubleshoot] {{prompt.title}}
+                      </a>
+                    </li>
+                  </ul>
                 {%- endif -%}
-              {%- endif -%} 
+                {%- if prompt.category == null and prompt.type == "answer" -%}
+                  <ul>
+                    <li>
+                      <a href="/?id={{prompt.id}}" class="link-secondary">
+                        [Solution] {{prompt.title}}
+                      </a>
+                    </li>
+                  </ul>
+                {%- endif -%}
+              {%- endunless -%}
             {%- endfor -%}
           </div>
         </div>

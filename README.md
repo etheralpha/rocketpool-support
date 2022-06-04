@@ -39,6 +39,7 @@ key       | description
 ----------|------------
 id        | A permanent, unique number that will be used to reference this entry.
 type      | (question/answer) `question` = an entry with choices to progress; `answer` = an entry that's a dead end with no choices for progression an only has a solution;
+category  | The category (from `directory_categories` in `_config.yml`) the prompt should be listed under in the directory. 
 title     | The question or the answer header.
 body      | (See [Body Content](#body-content))
 options   | A list of options for the user to get directed to the next prompt.
