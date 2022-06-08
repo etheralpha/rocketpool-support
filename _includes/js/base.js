@@ -21,8 +21,6 @@ function load() {
 
 
 function goToPrompt(currentId, nextId) {
-  console.log({"currentId": currentId});
-  console.log({"nextId": nextId});
   const currentPrompt = document.getElementById("prompt" + currentId);
   const nextPrompt = document.getElementById("prompt" + nextId);
   const backButton = document.getElementById("promptBack");
