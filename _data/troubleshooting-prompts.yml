@@ -48,7 +48,7 @@
   type: question
   category: 
   title: Is the transaction pending, or failed?
-  body: Go to etherscan.io and search for your node wallet address.\n\nIs the transaction pending, or did it fail?
+  body: Go to etherscan.io and search for your node wallet address.<br><br>Is the transaction pending, or did it fail?
   options:
     - option: It's pending
       go_to_id: 3
