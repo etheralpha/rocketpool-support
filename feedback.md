@@ -44,7 +44,7 @@ layout: default
 {%- assign prompts = "{" -%}
 {%- for prompt in site.data.troubleshooting-prompts -%}
   {%- capture prompt_item -%}
-    {{prompt.id}}: "{{prompt.title}}"
+    {{prompt.id | trim}}: "{{prompt.title | trim}}"
   {%- endcapture -%}
   {% if forloop.last %}
     {%- assign prompts = prompts | append: prompt_item -%}
@@ -59,7 +59,7 @@ layout: default
   let prompts = {{prompts}};
   function decode() {
     let input = document.getElementById("promptHistoryInput").value;
-    let promptHistory = input.replace(" ","").split(",");
+    let promptHistory = input.replace(/ /g,"").split(",");
     let output = "";
     for (let i in promptHistory) {
       let promptId = promptHistory[i];
