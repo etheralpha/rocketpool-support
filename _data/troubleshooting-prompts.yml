@@ -211,7 +211,7 @@
   type: question
   category: 
   title: Is NTP working?
-  body: "Run `timedatctl status`. Does it show `NTP service: active`?"
+  body: "Run `timedatectl status`. Does it show `NTP service: active`?"
   options:
     - option: "Yes"
       go_to_id: 18
